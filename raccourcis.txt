@@ -1,0 +1,15 @@
+
+A ajouter en début de programme:
+/*un commentaire expliquant la fonction du programme, l'auteur, la date, le numéro du laboratoire*/
+#include <iostream>
+using namespace std;
+
+Raccourci débug:
+g++ -std=c++20 -O2 -Wall -Wextra -Wconversion -Wsign-conversion -Wvla -pedantic
+
+Raccourci compile en .exe:
+g++ votre_nom_labo1.cpp -o votre_nom_labo1.exe
+
+Raccourci rendu:
+g++ -S votre_nom_labo1.cpp
+
