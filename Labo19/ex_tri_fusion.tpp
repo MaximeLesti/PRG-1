@@ -60,14 +60,19 @@ template <typename T>
 void tri_a_bulle(std::vector<T> & v){
 	int end = v.size();
 	for(int j = 1; j < v.size() ; ++j){
+		bool est_trie = true;
 		for(int i = 1; i < end ; ++i){
 			if(v[i] < v[i-1]){
 				T pas = v[i];
 				v[i]  = v[i-1];
 				v[i-1] = pas;
+				est_trie = false;
 			}
 		}
 		--end;
+		if(est_trie){
+			break;
+		}
 	}
 	
 }
