@@ -76,10 +76,10 @@ void tri_a_bulle(std::vector<T> & v){
 }
 
 int main(){
-	std::vector<int> un {2,4,5,6,7,9,11,12};
+	std::vector<int> un {2,4,6,7,9,11,12};
 	std:: vector<int> deux {1,3,8,10};
 	
-	std::vector<int>fus = fusion(un, deux);
+	std::vector<int>fus = fusion_insertion(un, deux);
 	//tri_a_bulle(un);
 	
 	for(int i=0; i<fus.size();++i){

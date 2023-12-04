@@ -13,6 +13,15 @@ void tri_fusion(vector<T> & v) {
 	tri_fusion(w);
 	fusion_insertion(v, w); // v = fusion(v, w); si on n’optimise pas l’utilisation de la mémoire
 }
+template <typename T>
+void tri_fusion_(vector<T> & v) {
+	if (v.size() < 2) return; // Déjà trié, on ne fait rien
+	vector<int> w(v.begin() + (int)v.size()/2, v.end()); // Deuxième moitié de v
+	v.resize(v.size()/2); // Première moitié de v
+	tri_fusion(v);
+	tri_fusion(w);
+	fusion(v, w); // v = fusion(v, w); si on n’optimise pas l’utilisation de la mémoire
+}
 
 int main() {
 	size_t n = 100;
@@ -26,6 +35,7 @@ int main() {
 		chrono::high_resolution_clock::time_point heure_avant = 
 			chrono::high_resolution_clock::now();
 		//tri_fusion(v); 
+		//tri_fusion_(v);
 		tri_a_bulle(v);
 		temps = chrono::duration_cast<chrono::duration<double>>
 			(chrono::high_resolution_clock::now()-heure_avant).count();
