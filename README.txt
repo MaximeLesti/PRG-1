@@ -182,17 +182,79 @@ Résumé Labo18:
 		-  vector<int> add(const vector<int> &, const vector<int> &);
 		-  vector<int> Fibonacci(int n);
 		
-2) /* Description du labo */
+2) On nous fournit un programme de résolution de systèmes linaéaires de 3 équations à 3 inconnues. Implémenter le programme pour qu'il puisse résoudre un système d'équations à 5 inconnues.
 	
 	Fonctions comprises dans le programme:
 		- /* déclaration fonction1 */
 		- /* déclaration fonction2 */
 		
-3) /* Description du labo */
+3) Implémenter une fonction qui permet de retourner, sous la forme de string, un nombre de type size_t écrit dans une base spécifiée par l'utilisateur.
 	
 	Fonctions comprises dans le programme:
 		- /* déclaration fonction1 */
 		- /* déclaration fonction2 */
+
+----------------------------------------------------------------------------------------------------
+
+Résumé Labo19:
+
+Exercer l'écriture de fonctions génériques et analyse de la complexité d'algorithme de tri
+	
+	Fonctions comprises dans le programme:
+		- template <typename T>
+		  std::vector<T> fusion(const std::vector<T> & v, const std::vector<T> & w);
+		- template <typename T>
+		  void fusion_insertion(std::vector<T> & v, const std::vector<T> & w);
+		- template <typename T>
+		  void tri_a_bulle (std::vector<T> & v);
+
+----------------------------------------------------------------------------------------------------
+
+Résumé Labo20:
+
+1) Définir une classe Mot et compter le nombre d'occurence de tous les mots dans une liste (vector)
+	
+	Fonctions comprises dans le programme:
+		- int dichotomie(const Lexique &, const string &);
+		
+		
+	Classes comprises dans le programme:
+		- class Mot
+			private:
+				string mot;
+				int nb = 1;
+			public:
+				Mot(string mot);
+				void incremente();
+				string getMot() const;
+				int getOccurence() const;
+
+		
+2) Définir une classe Rationnel permettant de manipuler des nombres fractionnaires
+	
+	Fonctions comprises dans le programme:
+		- void nb_premiers_entre_eux(int &, int &);
+		- int euclide(int, int);
+
+		
+	Classes comprises dans le programme:
+		- class Rationnel{
+			private: 
+				int numerateur;
+				int denominateur;
+			public:
+				Rationnel(int numerateur = 0, int denominateur = 1);
+				Rationnel operator+(Rationnel a, const Rationnel & b);
+				Rationnel operator-(Rationnel a, const Rationnel & b);
+				Rationnel operator*(Rationnel a, const Rationnel & b);
+				Rationnel operator/(Rationnel a, const Rationnel & b);
+				bool operator==(Rationnel a, const Rationnel & b);
+				bool operator<(Rationnel a, const Rationnel & b);
+				bool operator>(Rationnel a, const Rationnel & b);
+				bool operator<=(Rationnel a, const Rationnel & b);
+				bool operator>=(Rationnel a, const Rationnel & b);
+				void affiche(Rationnel a);
+
 
 ----------------------------------------------------------------------------------------------------
 

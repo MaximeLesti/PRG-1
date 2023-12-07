@@ -1,7 +1,11 @@
-Résumé LaboXX:
+Résumé Labo19:
 
-/* Description du labo */
+Exercer l'écriture de fonctions génériques et analyse de la complexité d'algorithme de tri
 	
 	Fonctions comprises dans le programme:
-		- /* déclaration fonction1 */
-		- /* déclaration fonction2 */
+		- template <typename T>
+		  std::vector<T> fusion(const std::vector<T> & v, const std::vector<T> & w);
+		- template <typename T>
+		  void fusion_insertion(std::vector<T> & v, const std::vector<T> & w);
+		- template <typename T>
+		  void tri_a_bulle (std::vector<T> & v);
