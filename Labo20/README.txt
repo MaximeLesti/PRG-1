@@ -32,14 +32,14 @@ Résumé Labo20:
 				int denominateur;
 			public:
 				Rationnel(int numerateur = 0, int denominateur = 1);
-				Rationnel operator+(Rationnel a, const Rationnel & b);
-				Rationnel operator-(Rationnel a, const Rationnel & b);
-				Rationnel operator*(Rationnel a, const Rationnel & b);
-				Rationnel operator/(Rationnel a, const Rationnel & b);
-				bool operator==(Rationnel a, const Rationnel & b);
-				bool operator<(Rationnel a, const Rationnel & b);
-				bool operator>(Rationnel a, const Rationnel & b);
-				bool operator<=(Rationnel a, const Rationnel & b);
-				bool operator>=(Rationnel a, const Rationnel & b);
-				void affiche(Rationnel a);
+				friend Rationnel operator+(Rationnel a, const Rationnel & b);
+				friend Rationnel operator-(Rationnel a, const Rationnel & b);
+				friend Rationnel operator*(Rationnel a, const Rationnel & b);
+				friend Rationnel operator/(Rationnel a, const Rationnel & b);
+				friend bool operator==(Rationnel a, const Rationnel & b);
+				friend bool operator<(Rationnel a, const Rationnel & b);
+				friend bool operator>(Rationnel a, const Rationnel & b);
+				friend bool operator<=(Rationnel a, const Rationnel & b);
+				friend bool operator>=(Rationnel a, const Rationnel & b);
+				friend void affiche(Rationnel a);
 
