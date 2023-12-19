@@ -47,8 +47,9 @@ int main(){
 }
 
 string generationKLM(string str){
-	string syntaxe_debut = "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n   <Document>\n      <name>Marathon HEIG</name>\n      <Placemark>\n        <Style>\n           <LineStyle>\n             <color>660000cc</color>\n             <width>5</width>\n          </LineStyle>\n        </Style>\n        <LineString>\n          <altitudeMode>clampToGround</altitudeMode>\n          <coordinates>";
-	string syntaxe_fin ="\n          </coordinates>\n        </LineString>\n      </Placemark>\n   </Document>\n</kml>";
+	const string syntaxe_debut = "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n   <Document>\n      <name>Marathon HEIG</name>\n      <Placemark>\n        <Style>\n           <LineStyle>\n             <color>660000cc</color>\n             <width>5</width>\n          </LineStyle>\n        </Style>\n        <LineString>\n          <altitudeMode>clampToGround</altitudeMode>\n          <coordinates>";
+	
+	const string syntaxe_fin ="\n          </coordinates>\n        </LineString>\n      </Placemark>\n   </Document>\n</kml>";
 
 	return syntaxe_debut + str + syntaxe_fin;
 }

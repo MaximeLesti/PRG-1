@@ -1,6 +1,6 @@
 /* Maxime Lestiboudois */
 /* 20/11/2023 */
-/* Laboratoire 18.1: Ecrire une fonction add prenant en paramètres 2 vector représentant deux nombres et donner leur addition. Ecire un programme de test qui demandera une valeur de n à l'utilisateur et affichera le nombre de Fibonacci */
+/* Laboratoire 18.1: Ecrire une fonction add prenant en paramètres 2 vector représentant deux nombres et donner leur addition. Ecrire un programme de test qui demandera une valeur de n à l'utilisateur et affichera le nombre de Fibonacci */
 
  #include <iostream>
  #include <vector>
