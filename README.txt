@@ -272,3 +272,42 @@ Résumé Labo21:
 
 ----------------------------------------------------------------------------------------------------
 
+Résumé Labo22: 
+
+Écrire et tester une fonction générique qui indique si deux vector contiennent exactement les mêmes éléments 
+	
+	Fonctions comprises dans le programme:
+		- template <typename T>
+		  bool memes_elements(vector<T> & a, vector<T> & b);
+		- template <typename T>
+		  bool a_contient_b(vector<T> & a, vector<T> & b);
+
+----------------------------------------------------------------------------------------------------
+
+Résumé Labo23:
+
+Rendre générique la procédure du tri par peigne données, de sorte qu’elle prenne en paramètre 2 itérateurs à accès direct. Comparer le temps de calcul de cette procédure pour trier des vector<int> avec celui de std::sort.
+	
+	Fonctions comprises dans le programme:
+		- template <typename Iterator>
+		  void tri_peigne(Iterator first, Iterator last);
+		- void tri_peigne_primaire(std::vector<double> & v);
+		
+	
+
+----------------------------------------------------------------------------------------------------
+
+Résumé LaboXX:
+
+/* Description du labo */
+	
+	Fonctions comprises dans le programme:
+		- /* déclaration fonction1 */
+		- /* déclaration fonction2 */
+		
+	Classes comprises dans le programme:
+		- /* déclaration classe1 */
+		- /* déclaration classe2 */
+
+----------------------------------------------------------------------------------------------------
+

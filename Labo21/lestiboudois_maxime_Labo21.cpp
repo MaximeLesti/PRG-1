@@ -58,13 +58,13 @@ Uint::Uint(uint64_t ent){
 	return Uint(entier);
 }
 Uint::Uint operator+(Uint gauche, const Uint & droite){
-	Uint() retour;
+	Uint retour;
 	retour.donnees = gauche.donnees + droite.donnees;
 	
 	return retour;
 }
 Uint operator*(Uint gauche, const Uint & droite){
-	Uint() retour;
+	Uint retour;
 	retour.donnees = gauche.donnees * droite.donnees;
 	
 	return retour;
@@ -76,15 +76,47 @@ ostream & operator<< (ostream & sortie, const Uint & objet){
 	return sortie;
 }
 Uint operator+(Uint gauche, const Uint & droite){
-	Uint() retour;
+	Uint retour;
 	retour.donnees = gauche.donnees + droite.donnees;
 	
 	return retour;
 }
 
-Uint operator-(Uint gauche, const Uint & droite);
-Uint operator*(Uint gauche, const Uint & droite);
-Uint operator/(Uint gauche, const Uint & droite);
+Uint operator-(Uint gauche, const Uint & droite){
+	Uint retour;
+	if(gauche.donnees<droite.donnees) {
+		retour.donnees = "erreur";
+		cout << retour;
+		abort();
+		}
+	string str="";
+	size_t indice = droite.donnees.rfind('1', droite.donnees.size()-1);
+	for(size_t i = 0; i < indice; ++i){
+		str.push_back(droite.donnees[i] == '0'? '1': '0');
+	}
+	str += droite.donnees(indice, droite.donnees.size()-1);
+	retour.donnees = str + gauche.donnees;
+
+	return retour;	
+
+}
+Uint operator*(Uint gauche, const Uint & droite){
+	Uint retour;
+	retour.donnees = gauche.donnees * droite.donnees;
+	
+	return retour;
+}
+Uint operator/(Uint gauche, const Uint & droite){
+	Uint retour;
+	if(droite.donnees.find('1')==string::npos;) {
+		retour.donnees = "erreur";
+		cout << retour;
+		abort();
+	}
+	
+	
+	
+}	
 Uint operator%(Uint gauche, const Uint & droite);
 auto operator<=>(Uint gauche, const Uint & droite);
 auto operator<=>(Uint gauche, Uint  droite){
