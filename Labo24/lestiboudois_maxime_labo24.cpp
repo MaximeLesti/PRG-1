@@ -1,171 +1,93 @@
 /* Maxime Lestiboudois */
-/* 12.01.2024*/ 
-/* Laboratoire 24: Reprendre le laboratoire 20.2 en adaptant la classe Rationnel pour qu’elle soit basée sur la classe Uint mise au point au laboratoire 21 et qu’elle intègre les exceptions pouvant survenir comme la lecture erronée d’un rationnel, la division par 0, etc. Vérifier le bon fonctionnement de cette classe en résolvant de manière exacte des systèmes d’équations linéaires avec coefficients entiers (exercice 8.13). */
+/* 26.01.2024 */ 
+/*  */
 
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <vector>
 
-#include "lestiboudois_maxime_uint.cpp"
+#include "lestiboudois_maxime_uint.hpp"
 #include "lestiboudois_maxime_sint.hpp"
+#include "lestiboudois_maxime_rationnel.hpp"
+#include "lestiboudois_maxime_pivotage.cpp"
 
 
-//void nb_premiers_entre_eux(Uint &, Uint &);
-int euclide(int, int);
-
-//Déclarations de classes
-
-class Rationnel{
-	private: 
-		int numerateur;
-		int denominateur;
-	public:
-		Rationnel(int numerateur = 0, int denominateur=1);
-		friend Rationnel operator+(Rationnel a, const Rationnel & b);
-		friend Rationnel operator-(Rationnel a, const Rationnel & b);
-		friend Rationnel operator*(Rationnel a, const Rationnel & b);
-		friend Rationnel operator/(Rationnel a, const Rationnel & b);
-		friend bool operator==(Rationnel a, const Rationnel & b);
-		friend bool operator<(Rationnel a, const Rationnel & b);
-		friend bool operator>(Rationnel a, const Rationnel & b);
-		friend bool operator<=(Rationnel a, const Rationnel & b);
-		friend bool operator>=(Rationnel a, const Rationnel & b);
-		friend void affiche(Rationnel a);
-};
-Rationnel::Rationnel(int numerateur, int denominateur){
-	this->numerateur = numerateur;
-	this->denominateur = denominateur;
-	if(denominateur==1) {
-		std::string d = "errore";
-		throw(d);
-	}
-}
-Rationnel operator+(Rationnel a, const Rationnel & b){
-	Rationnel retour = Rationnel();
-	retour.numerateur = a.numerateur*b.denominateur + b.numerateur*a.denominateur;
-	retour.denominateur = a.denominateur * b.denominateur;
-	//nb_premiers_entre_eux(retour.numerateur, retour.denominateur);
-	
-	return retour;
-}
-Rationnel operator-(Rationnel a, const Rationnel & b){
-	Rationnel retour = Rationnel();
-	retour.numerateur = a.numerateur*b.denominateur - b.numerateur*a.denominateur;
-	retour.denominateur = a.denominateur * b.denominateur;
-	//nb_premiers_entre_eux(retour.numerateur, retour.denominateur);
-	
-	return retour;
-}
-Rationnel operator*(Rationnel a, const Rationnel & b){
-	Rationnel retour = Rationnel();
-	retour.numerateur = a.numerateur * b.numerateur;
-	retour.denominateur = a.denominateur * b.denominateur;
-	//nb_premiers_entre_eux(retour.numerateur, retour.denominateur);
-	
-	return retour;
-}
-
-Rationnel operator/(Rationnel a, const Rationnel & b){
-	Rationnel retour = Rationnel();
-	retour.numerateur = a.numerateur * b.denominateur;
-	retour.denominateur = a.numerateur * b.denominateur;
-	//nb_premiers_entre_eux(retour.numerateur, retour.denominateur);
-	
-	return retour;
-}
-bool operator==(Rationnel a, const Rationnel & b){
-	return (a.numerateur*b.denominateur == b.numerateur*a.denominateur);
-}
-bool operator<(Rationnel a, const Rationnel & b){
-	return (a.numerateur*b.denominateur < b.numerateur*a.denominateur);
-}
-bool operator>(Rationnel a, const Rationnel & b){
-	return (a.numerateur*b.denominateur > b.numerateur*a.denominateur);
-}
-bool operator<=(Rationnel a, const Rationnel & b){
-	return ((a == b) || (a < b));
-}
-bool operator>=(Rationnel a, const Rationnel & b){
-	return ((a == b) || (a > b));
-}
-
-void affiche(Rationnel a){
-	std::cout << a.numerateur << " / " << a.denominateur << std::endl;
-}
-
-/*void nb_premiers_entre_eux(Uint & a, Uint & b){
-
-	if(a>0 && b>0){
-		int pgdc = euclide(a,b);
-		while(pgdc != 1){
-			a /= pgdc;
-			b/= pgdc;
-			pgdc = euclide(a,b);
-		}
-	}
-	if(a<0){
-		a = -a;
-		int pgdc = euclide(a,b);
-		while(pgdc != 1){
-			a /= pgdc;
-			b/= pgdc;
-		}
-		a = -a;
-	}
-	if(b<0){
-		b = -b;
-		int pgdc = euclide(a,b);
-		while(pgdc != 1){
-			a /= pgdc;
-			b/= pgdc;
-		}
-		b = -b;
-	}
-}*/
-		
-int euclide(int nombre_1, int nombre_2){
-	while(nombre_2 != 0){
-		int t = nombre_2;
-		nombre_2 = nombre_1 % nombre_2;
-		nombre_1 = t;
-	  }
-	return nombre_1;
-}
-	
-
-
+//Déclaration de constantes
+const char separateur = ' ';
 	
 	
 using namespace std;
 
 int main(){
 	try{
-		Uint a = Uint(5); //101
 
-		Uint b = Uint(27); // 1010
-
-		Uint c = Uint(3); //11
-
-		Uint d = Uint(2); //10
-		//d-=c;	
-		//b/=d;
-		cout << std::setbase(8) << 12 << endl;
+		string nom;
+		string str;
+		cout << "Quel fichier voulez-vous ouvrir?" << endl;
+		getline(cin, nom);
+		fstream mon_fichier(nom, ios::in | ios::out);
+		getline(mon_fichier, str, separateur);
+		int m = stoi(str);
+		getline(mon_fichier, str, separateur);
+		vector<Rationnel> sol(m);
+		vector<vector<Rationnel>> matrice(m, sol);
 		
-
-		//Rationnel u = Rationnel(a, b);
-
-		//Rationnel v = Rationnel(c,d);
-
-		//affiche(u/v);
-	/*Rationnel a = Rationnel(2,5);
-	Rationnel b= Rationnel(4,8);
-	affiche(a/b);*/
+		for (int i = 0; i < m ; ++i){
+			for(int j = 0; j < m; ++j){
+				Rationnel a;
+				mon_fichier >> a;
+				
+				matrice[i][j] = a;
+			}
+		}
+		for(int i = 0 ; i < m ; ++i){
+			Rationnel a;
+			mon_fichier >> a;
+			sol[i] = a;
+		}
+	
+		mon_fichier.close();
+	
+	
+	/*std::vector<std::vector<Rationnel>> matrice = {
+	{Rationnel(Sint(1),Sint(1)), Rationnel(Sint(2),Sint(1)), Rationnel(Sint(3),Sint(1))},
+	{Rationnel(Sint(1),Sint(1)), Rationnel(Sint(0), Sint(1)), Rationnel(Sint(8), Sint(1))},
+	{Rationnel(Sint(2), Sint(1)), Rationnel(Sint(5), Sint(1)), Rationnel(Sint(3), Sint(1))}
+	};
+	
+	std::vector<Rationnel> sol = {Rationnel(Sint(3), Sint(1)),Rationnel(Sint(8), Sint(1)),Rationnel(Sint(2),Sint(1))};
+	*/
+	cout << "-----" <<endl;
+	for(int i = 0; i < m; ++i){
+		for(int j = 0; j<m; ++j){
+			cout << matrice[i][j];
+		}
+	cout << " "<<char('x'+i)<< "   " << sol[i] << endl;
 	}
-	catch(string s){
-		cout << s << endl;
+	
+		cout << "-----" <<endl;
+	
+	vector<Rationnel> solution = pivotage(matrice, sol);
+	
+	for(int i = 0; i<sol.size(); ++i){	
+		std::cout << solution[i]<<" " <<std::endl;
 	}
-	catch(Uint){
-		cout << "Ce n'est pas bon" << endl;
+	
+	Sint a = Sint(9);
+	Sint b= Sint(6);
+	cout <<"ici   " <<  a+b <<endl;
+	
+	}
+	
+	catch(Rationnel_creation e){
+		cout << e.what() << endl;
+	}
+	catch(Uint_attribut e){
+		cout << e.what() << endl;
+	}
+	catch(exception & e){
+		cout << e.what() << endl;
 	}
 }
